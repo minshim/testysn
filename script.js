@@ -5,9 +5,9 @@ function swingOnScroll() {
   const swingElementA = document.querySelector('.logo_A');
   const swingElementB = document.querySelector('.logo_B');
   const swingElementC = document.querySelector('.logo_C');
-  const maxRotationA = 360; 
+  const maxRotationA = 60; 
   const maxRotationB = 270; 
-  const maxRotationC = 460; 
+  const maxRotationC = 160; 
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
   let rotationA = (scrollTop / scrollHeight) * maxRotationA; 
   let rotationB = (scrollTop / scrollHeight) * maxRotationB; 
@@ -16,8 +16,21 @@ function swingOnScroll() {
   swingElementA.style.transform = `rotate(${rotationA}deg)`;
   swingElementB.style.transform = `rotate(${rotationB}deg)`;
   swingElementC.style.transform = `rotate(${rotationC}deg)`;
+}
+
+let ticking = false;
+
+function onScroll() {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      swingOnScroll();
+      ticking = false;
+    });
+    ticking = true;
   }
-  
+}
+
+window.addEventListener('scroll', onScroll);
   function hideLogoOnClick(logoElement) {
   logoElement.style.transition = 'opacity 0.1s'; 
   logoElement.style.opacity = '0'; 
