@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const swingElementC = document.querySelector('.logo_C');
   
   const maxRotationA = 60;
-  const maxRotationB = 270;
+  const maxRotationB = 200;
   const maxRotationC = 160;
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
 
