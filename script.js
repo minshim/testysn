@@ -5,14 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const swingElementB = document.querySelector('.logo_B');
   const swingElementC = document.querySelector('.logo_C');
   
+  const maxRotationA = 60;
+  const maxRotationB = 270;
+  const maxRotationC = 160;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  let lastKnownScrollPosition = 0;
   let ticking = false;
 
-  function swingOnScroll() {
-    const scrollTop = window.scrollY;
-    const maxRotationA = 60; 
-    const maxRotationB = 270; 
-    const maxRotationC = 160; 
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  function updateRotation() {
+    const scrollTop = lastKnownScrollPosition;
     const rotationA = (scrollTop / scrollHeight) * maxRotationA; 
     const rotationB = (scrollTop / scrollHeight) * maxRotationB; 
     const rotationC = (scrollTop / scrollHeight) * maxRotationC;
@@ -29,9 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function onScroll() {
+    lastKnownScrollPosition = window.scrollY;
+
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        swingOnScroll();
+        updateRotation();
         ticking = false;
       });
       ticking = true;
@@ -40,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', onScroll);
 });
+
 
 
 
