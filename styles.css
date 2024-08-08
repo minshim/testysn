@@ -340,7 +340,7 @@ strong {
 .logo-wrapper img.logo_B,
 .logo-wrapper img.logo_C {
   position: fixed;
-  transform-origin: center;
+/*   transform-origin: center; */
 }
 
 .logo_A {
@@ -406,11 +406,11 @@ strong {
   animation: swing 1s infinite;
 } */
 
-@keyframes swing {
+/* @keyframes swing {
   0% { transform: rotate(-10deg); } 
   50% { transform: rotate(10deg); }
   100% { transform: rotate(-10deg); }
-}
+} */
 
  /* alert 
 
