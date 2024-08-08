@@ -1,45 +1,47 @@
 // ----------------------------------------------------------------logo rotation
 
-// スクロール時の回転を制御する関数
-function swingOnScroll() {
-  const scrollTop = window.scrollY;
-  const maxRotationA = 60; 
-  const maxRotationB = 270; 
-  const maxRotationC = 160; 
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const rotationA = (scrollTop / scrollHeight) * maxRotationA; 
-  const rotationB = (scrollTop / scrollHeight) * maxRotationB; 
-  const rotationC = (scrollTop / scrollHeight) * maxRotationC;
-
+// ページが読み込まれたときに要素を取得
+document.addEventListener('DOMContentLoaded', () => {
   const swingElementA = document.querySelector('.logo_A');
   const swingElementB = document.querySelector('.logo_B');
   const swingElementC = document.querySelector('.logo_C');
   
-  if (swingElementA) {
-    swingElementA.style.transform = `rotate(${rotationA}deg)`;
-  }
-  if (swingElementB) {
-    swingElementB.style.transform = `rotate(${rotationB}deg)`;
-  }
-  if (swingElementC) {
-    swingElementC.style.transform = `rotate(${rotationC}deg)`;
-  }
-}
+  let ticking = false;
 
-let ticking = false;
-
-function onScroll() {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      swingOnScroll();
-      ticking = false;
-    });
-    ticking = true;
+  function swingOnScroll() {
+    const scrollTop = window.scrollY;
+    const maxRotationA = 60; 
+    const maxRotationB = 270; 
+    const maxRotationC = 160; 
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const rotationA = (scrollTop / scrollHeight) * maxRotationA; 
+    const rotationB = (scrollTop / scrollHeight) * maxRotationB; 
+    const rotationC = (scrollTop / scrollHeight) * maxRotationC;
+    
+    if (swingElementA) {
+      swingElementA.style.transform = `rotate(${rotationA}deg)`;
+    }
+    if (swingElementB) {
+      swingElementB.style.transform = `rotate(${rotationB}deg)`;
+    }
+    if (swingElementC) {
+      swingElementC.style.transform = `rotate(${rotationC}deg)`;
+    }
   }
-}
 
-// スクロールイベントのリスナーを追加
-window.addEventListener('scroll', onScroll);
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        swingOnScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  // スクロールイベントのリスナーを追加
+  window.addEventListener('scroll', onScroll);
+});
 
 
 
