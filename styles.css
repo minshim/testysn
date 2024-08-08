@@ -343,6 +343,10 @@ strong {
 /*   transform-origin: center; */
 }
 
+.logo_A, .logo_B, .logo_C {
+  will-change: transform;
+}
+
 .logo_A {
   right: 160px;
   bottom: 320px;
