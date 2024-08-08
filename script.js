@@ -1,5 +1,17 @@
 // ----------------------------------------------------------------logo rotation
 
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 function swingOnScroll() {
   const scrollTop = window.scrollY;
   const swingElementA = document.querySelector('.logo_A');
@@ -18,19 +30,9 @@ function swingOnScroll() {
   swingElementC.style.transform = `rotate(${rotationC}deg)`;
 }
 
-let ticking = false;
+window.addEventListener('scroll', debounce(swingOnScroll, 10));
 
-function onScroll() {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      swingOnScroll();
-      ticking = false;
-    });
-    ticking = true;
-  }
-}
 
-window.addEventListener('scroll', onScroll);
   function hideLogoOnClick(logoElement) {
   logoElement.style.transition = 'opacity 0.1s'; 
   logoElement.style.opacity = '0'; 
