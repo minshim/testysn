@@ -5,7 +5,7 @@ function swingOnScroll() {
   const swingElementA = document.querySelector('.logo_A');
   const swingElementB = document.querySelector('.logo_B');
   const swingElementC = document.querySelector('.logo_C');
-  const maxRotationA = 60; 
+  const maxRotationA = 360; 
   const maxRotationB = 270; 
   const maxRotationC = 460; 
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
