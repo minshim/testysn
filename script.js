@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rotationA = (scrollTop / scrollHeight) * maxRotationA; 
     const rotationB = (scrollTop / scrollHeight) * maxRotationB; 
     const rotationC = (scrollTop / scrollHeight) * maxRotationC;
-    
-    // 更新時に各要素のスタイルを変更
+
     if (swingElementA) {
       swingElementA.style.transform = `rotate(${rotationA}deg)`;
     }
@@ -39,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // スクロールイベントのリスナーを追加
   window.addEventListener('scroll', onScroll);
 });
+
 
 
 
