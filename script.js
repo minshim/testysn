@@ -13,10 +13,6 @@ function swingOnScroll() {
   let rotationB = (scrollTop / scrollHeight) * maxRotationB; 
   let rotationC = (scrollTop / scrollHeight) * maxRotationC; 
   
-  rotationA *= 0.5; 
-  rotationB *= 0.9;
-  rotationC *= 0.8; 
-  
   swingElementA.style.transform = `rotate(${rotationA}deg)`;
   swingElementB.style.transform = `rotate(${rotationB}deg)`;
   swingElementC.style.transform = `rotate(${rotationC}deg)`;
