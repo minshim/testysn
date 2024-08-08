@@ -1,36 +1,46 @@
 // ----------------------------------------------------------------logo rotation
 
-function debounce(func, wait) {
-  let timeout;
-  return function(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
+// スクロール時の回転を制御する関数
 function swingOnScroll() {
   const scrollTop = window.scrollY;
-  const swingElementA = document.querySelector('.logo_A');
-  const swingElementB = document.querySelector('.logo_B');
-  const swingElementC = document.querySelector('.logo_C');
   const maxRotationA = 60; 
   const maxRotationB = 270; 
   const maxRotationC = 160; 
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  let rotationA = (scrollTop / scrollHeight) * maxRotationA; 
-  let rotationB = (scrollTop / scrollHeight) * maxRotationB; 
-  let rotationC = (scrollTop / scrollHeight) * maxRotationC; 
+  const rotationA = (scrollTop / scrollHeight) * maxRotationA; 
+  const rotationB = (scrollTop / scrollHeight) * maxRotationB; 
+  const rotationC = (scrollTop / scrollHeight) * maxRotationC;
+
+  const swingElementA = document.querySelector('.logo_A');
+  const swingElementB = document.querySelector('.logo_B');
+  const swingElementC = document.querySelector('.logo_C');
   
-  swingElementA.style.transform = `rotate(${rotationA}deg)`;
-  swingElementB.style.transform = `rotate(${rotationB}deg)`;
-  swingElementC.style.transform = `rotate(${rotationC}deg)`;
+  if (swingElementA) {
+    swingElementA.style.transform = `rotate(${rotationA}deg)`;
+  }
+  if (swingElementB) {
+    swingElementB.style.transform = `rotate(${rotationB}deg)`;
+  }
+  if (swingElementC) {
+    swingElementC.style.transform = `rotate(${rotationC}deg)`;
+  }
 }
 
-window.addEventListener('scroll', debounce(swingOnScroll, 10));
+let ticking = false;
+
+function onScroll() {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      swingOnScroll();
+      ticking = false;
+    });
+    ticking = true;
+  }
+}
+
+// スクロールイベントのリスナーを追加
+window.addEventListener('scroll', onScroll);
+
 
 
   function hideLogoOnClick(logoElement) {
